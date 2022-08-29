@@ -6,8 +6,17 @@
   <title>Register</title>
 </head>
 <body>
-  <form method="POST" action="/register">
-
+  <form method="post" action="/register" enctype="application/x-www-form-urlencoded">
+    <select name="role">
+      <option >일반</option>
+      <option >관리자</option>
+    </select><br>
+    <input type="text" placeholder="ID" name="id"><br>
+    <input type="password" placeholder="PW" name="pw"><br>
+    <input type="text" placeholder="NAME" name="name"><br>
+    <input type="email" placeholder="EMAIL" name="email"><br>
+    <input type="tel" placeholder="PHONE" name="phone"><br>
+    <input type="submit" value="전송">
   </form>
 </body>
 </html>
