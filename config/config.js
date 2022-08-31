@@ -12,7 +12,8 @@ const User = sequelize.define('users', {
   },
   user_id: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   user_password:{
     type: DataTypes.STRING,
@@ -38,7 +39,7 @@ const User = sequelize.define('users', {
 
 const dbInit = async() => {
   try{
-    await sequelize.sync({force: true});
+    await sequelize.sync({force: false});
     console.log('All Tables Created Successfully');
   }
   catch(err){

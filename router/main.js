@@ -1,2 +1,7 @@
+const path = require('path');
+
 const router = require('express').Router();
-const jwt = require('jsonwebtoken');
+
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../page/game.html'))
+})

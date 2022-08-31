@@ -16,7 +16,6 @@ router.post('/', async (req, res) => {
       user_email: req.body.email,
       user_phone: req.body.phone
     });
-    await createdUser.save();
     res.redirect('/');
   }
   catch(err){
