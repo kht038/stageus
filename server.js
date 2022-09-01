@@ -6,18 +6,18 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const port = process.env.PORT;
+const cookieParser = require('cookie-parser');
 const { dbInit } = require('./config/config');
-const path = require('path');
 
 dbInit();
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(urlencoded({ extended: true }));
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, './page/game.html'))
-});
+const mainApi = require('./router/main');
+app.use('/', mainApi);
 
 const regiseterApi = require('./router/register');
 app.use('/register', regiseterApi);

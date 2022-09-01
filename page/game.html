@@ -8,5 +8,61 @@
 <body>
   <a href="/login">로그인</a>
   <a href="/register">회원가입</a>
+
+  <br>
+  <div id="info"></div>
+  <div id="game">
+    <input type="text" name="value" id="value">
+    <input type="button" value="업다운!" onclick="upDown()"></input>
+    <div id="check"></div>
+  </div>
+  <script>
+    fetch('/', {
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+    })
+    .then(response => response.json())
+    .then(result => {
+      if(!result.success){
+        alert('expired');
+        window.location.href = '/login';
+      }
+      const info = document.getElementById('info');
+
+      info.innerHTML += 
+      `<div>${result.role}</div>
+      <div>${result.id}</div>
+      <div>${result.name}</div>
+      <div>${result.email}</div>
+      <div>${result.phone}</div>`;
+    })
+    
+    const game = document.getElementById('game');
+    const check = document.getElementById('check');
+
+    const randNum = Math.floor(Math.random() * 50) + 1;
+    let num = 0;
+    console.log(randNum)
+    const upDown = () => {
+      const value = document.getElementById('value').value;
+      if(value != randNum){
+        if(value < randNum){
+          check.innerHTML = '업!';
+          num ++;
+        }
+        else{
+          check.innerHTML = '다운!';
+          num ++;
+        }
+        console.log(num)
+      }
+      else{
+        check.innerHTML = '정답!';
+      }
+    }
+
+  </script>
 </body>
 </html>
