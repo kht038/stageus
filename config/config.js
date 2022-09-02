@@ -32,7 +32,7 @@ const User = sequelize.define('users', {
     allowNull: false
   },
   user_history: {
-    type: DataTypes.JSON,
+    type: DataTypes.INTEGER,
     allowNull: true
   }
 });

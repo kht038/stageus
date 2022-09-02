@@ -60,6 +60,32 @@
       }
       else{
         check.innerHTML = '정답!';
+        fetch('/history', {
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "score": num 
+          }
+        })
+        .then(response => response.json())
+        .then(result => {
+          if(!result.success){
+            alert('expired');
+            window.location.href = '/login';
+          }
+          else{
+            if(result.update){
+              alert('update success');
+              window.location.reload();
+            }
+            else{
+              alert('까비요');
+              window.location.reload();
+            }
+          }
+        })
       }
     }
 
