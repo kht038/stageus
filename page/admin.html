@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="users"></div>
+  <script>
+    fetch('/admin', {
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => response.json())
+    .then(result => {
+      if(!result.success){
+        alert('관리자 아님!')
+        window.location.href('/');
+      }
+      console.log(result.users);
+      const users = document.getElementById('users');
+
+      for(let i = 0; i < result.users.length; i++){
+        users.innerHTML += 
+        `<div>${result.users[i].user_role}</div>
+        <div>${result.users[i].user_id}</div>
+        <div>${result.users[i].user_name}</div>
+        <div>${result.users[i].user_email}</div>
+        <div>${result.users[i].user_phone}</div>
+        <div>${result.users[i].user_history}</div><br>`;
+      }
+    })
+  </script>
+</body>
+</html>

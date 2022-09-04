@@ -25,6 +25,12 @@ app.use('/register', regiseterApi);
 const loginApi = require('./router/login');
 app.use('/login', loginApi);
 
+const adminApi = require('./router/admin');
+app.use('/admin', adminApi);
+
+const rankApi = require('./router/ranking');
+app.use('/ranking', rankApi)
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

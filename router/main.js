@@ -36,6 +36,7 @@ router.post('/', (req, res) => {
 
 router.post('/history', async (req, res) => {
   const token = req.cookies.authToken;
+  const num = req.body.score;
   const response = {
     "update": false,
     "success": true
@@ -54,7 +55,7 @@ router.post('/history', async (req, res) => {
       await findUser.save();
     }
     else{
-      if(findUser.user_history < num){
+      if(findUser.user_history > num){
         response.update = true;
         findUser.user_history = num;
         await findUser.save();
